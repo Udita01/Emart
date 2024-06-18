@@ -84,16 +84,16 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: isServerMessage
-                            ? const Color.fromRGBO(249, 80, 89, 1)
-                            : const Color.fromRGBO(51, 91, 108, 1),
+                            ? Colors.black87
+                            : Colors.green[900],
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
                         message,
                         style: const TextStyle(
                           color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 1.1,
                         ),
                       ),
                     ),
