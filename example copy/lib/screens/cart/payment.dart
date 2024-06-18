@@ -1,6 +1,13 @@
-import 'package:example/constants.dart';
-import 'package:example/screens/home/home.dart';
+import 'package:example/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:example/constants.dart';
+import 'package:flutter/widgets.dart';
+
+enum PaymentMethod {
+  creditDebit,
+  paypal,
+  applePay,
+}
 
 class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
@@ -11,11 +18,16 @@ class PaymentScreen extends StatefulWidget {
 }
 
 class _PaymentScreenState extends State<PaymentScreen> {
-  bool _isCreditDebitSelected = false;
-  bool _isPayPalSelected = false;
-  bool _isApplePaySelected = false;
-  final _formKey = GlobalKey<FormState>();
+  PaymentMethod? _selectedPaymentMethod;
   bool _isFormValid = false;
+
+  final TextEditingController _cardNumberController = TextEditingController();
+  final TextEditingController _expMonthController = TextEditingController();
+  final TextEditingController _expYearController = TextEditingController();
+  final TextEditingController _cvvController = TextEditingController();
+  final TextEditingController _upiIdController = TextEditingController();
+  final TextEditingController _appleIdController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,150 +39,144 @@ class _PaymentScreenState extends State<PaymentScreen> {
         backgroundColor: kcontentColor,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                // Payment Method Selection
-                Container(
-                  margin: const EdgeInsets.only(
-                    top: 10,
-                  ),
-                  child: const Text(
-                    'Select Payment Method',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Payment Method Selection
+            const Padding(
+              padding: EdgeInsets.only(top: 20.0, bottom: 10.0),
+              child: Text(
+                'Select Payment Method',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    PaymentMethodCard(
-                      icon: Icons.credit_card,
-                      label: '  Credit/Debit ',
-                      onPressed: () {
-                        // Handle credit/debit card selection
-                        setState(() {
-                          _isCreditDebitSelected = true;
-                          _isPayPalSelected = false;
-                          _isApplePaySelected = false;
-                        });
-                      },
-                      isSelected: _isCreditDebitSelected,
-                    ),
-                    PaymentMethodCard(
-                      icon: Icons.paypal,
-                      label: 'PayPal',
-                      onPressed: () {
-                        // Handle PayPal selection
-                        setState(() {
-                          _isPayPalSelected = true;
-                          _isCreditDebitSelected = false;
-                          _isApplePaySelected = false;
-                        });
-                      },
-                      isSelected: _isPayPalSelected,
-                    ),
-                    PaymentMethodCard(
-                      icon: Icons.apple_sharp,
-                      label: 'Apple Pay',
-                      onPressed: () {
-                        // Handle Apple Pay selection
-                        setState(() {
-                          _isApplePaySelected = true;
-                          _isCreditDebitSelected = false;
-                          _isPayPalSelected = false;
-                        });
-                      },
-                      isSelected: _isApplePaySelected,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                // Credit/Debit Card Form
-                Container(
-                  margin: const EdgeInsets.only(
-                    top: 12,
-                  ),
-                  child: const Text(
-                    'Credit/Debit Card Information',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                CardForm(
-                  onCardNumberChanged: (value) {
-                    // Handle card number change
-                    _validateForm();
-                  },
-                  onExpMonthChanged: (value) {
-                    // Handle expiration month change
-                    _validateForm();
-                  },
-                  onExpYearChanged: (value) {
-                    // Handle expiration year change
-                    _validateForm();
-                  },
-                  onCvcChanged: (value) {
-                    // Handle CVC change
-                    _validateForm();
-                  },
-                ),
-
-                // Payment Button
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: _isFormValid
-                      ? () {
-                          // Handle payment submission
-
-                          _showSnackBar(context);
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const HomeScreen(),
-                            ),
-                          );
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kprimaryColor,
-                    foregroundColor: kcontentColor,
-                  ),
-                  child: const Text(
-                    'Pay Now',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            PaymentMethodCard(
+              icon: Icons.credit_card,
+              label: 'Credit/Debit',
+              isSelected: _selectedPaymentMethod == PaymentMethod.creditDebit,
+              onPressed: () {
+                setState(() {
+                  _selectedPaymentMethod = PaymentMethod.creditDebit;
+                });
+              },
+            ),
+            if (_selectedPaymentMethod == PaymentMethod.creditDebit)
+              CardForm(
+                cardNumberController: _cardNumberController,
+                expMonthController: _expMonthController,
+                expYearController: _expYearController,
+                cvvController: _cvvController,
+                onCardNumberChanged: _validateForm,
+                onExpMonthChanged: _validateForm,
+                onExpYearChanged: _validateForm,
+                onCvcChanged: _validateForm,
+              ),
+            PaymentMethodCard(
+              icon: Icons.paypal,
+              label: 'PayPal',
+              isSelected: _selectedPaymentMethod == PaymentMethod.paypal,
+              onPressed: () {
+                setState(() {
+                  _selectedPaymentMethod = PaymentMethod.paypal;
+                });
+              },
+            ),
+            if (_selectedPaymentMethod == PaymentMethod.paypal)
+              TextFormField(
+                controller: _upiIdController,
+                decoration: const InputDecoration(
+                  labelText: 'Enter UPI ID',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter UPI ID';
+                  }
+                  return null;
+                },
+                onChanged: _validateForm,
+              ),
+            PaymentMethodCard(
+              icon: Icons.apple_sharp,
+              label: 'Apple Pay',
+              isSelected: _selectedPaymentMethod == PaymentMethod.applePay,
+              onPressed: () {
+                setState(() {
+                  _selectedPaymentMethod = PaymentMethod.applePay;
+                });
+              },
+            ),
+            if (_selectedPaymentMethod == PaymentMethod.applePay)
+              TextFormField(
+                controller: _appleIdController,
+                decoration: const InputDecoration(
+                  labelText: 'Enter Apple ID',
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter Apple ID';
+                  }
+                  return null;
+                },
+                onChanged: _validateForm,
+              ),
+            // Payment Button
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _isFormValid && _selectedPaymentMethod != null
+                    ? () {
+                        _showSnackBar(context);
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const BottomNavBar(),
+                          ),
+                        );
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.all(
+                    15,
+                  ),
+                  backgroundColor: kprimaryColor,
+                  foregroundColor: kcontentColor,
+                ),
+                child: const Text(
+                  'Pay Now',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  void _validateForm() {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        _isFormValid = true;
-      });
-    } else {
-      setState(() {
-        _isFormValid = false;
-      });
-    }
+  void _validateForm(String _) {
+    bool isCardValid = _cardNumberController.text.isNotEmpty &&
+        _expMonthController.text.isNotEmpty &&
+        _expYearController.text.isNotEmpty &&
+        _cvvController.text.isNotEmpty;
+
+    bool isPayPalValid = _upiIdController.text.isNotEmpty;
+
+    bool isApplePayValid = _appleIdController.text.isNotEmpty;
+
+    setState(() {
+      _isFormValid = (_selectedPaymentMethod == PaymentMethod.creditDebit &&
+              isCardValid) ||
+          (_selectedPaymentMethod == PaymentMethod.paypal && isPayPalValid) ||
+          (_selectedPaymentMethod == PaymentMethod.applePay && isApplePayValid);
+    });
   }
 
   void _showSnackBar(BuildContext context) {
@@ -186,56 +192,60 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _cardNumberController.dispose();
+    _expMonthController.dispose();
+    _expYearController.dispose();
+    _cvvController.dispose();
+    _upiIdController.dispose();
+    _appleIdController.dispose();
+    super.dispose();
+  }
 }
 
-class PaymentMethodCard extends StatefulWidget {
+class PaymentMethodCard extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onPressed;
   final bool isSelected;
 
-  const PaymentMethodCard(
-      {super.key,
-      required this.icon,
-      required this.label,
-      required this.onPressed,
-      required this.isSelected});
+  const PaymentMethodCard({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.isSelected,
+    required this.onPressed,
+  });
 
-  @override
-  State<PaymentMethodCard> createState() => _PaymentMethodCardState();
-}
-
-class _PaymentMethodCardState extends State<PaymentMethodCard> {
-  bool _isSelected = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _isSelected = !_isSelected;
-        });
-        widget.onPressed();
-      },
+      onTap: onPressed,
       child: Container(
-        width: MediaQuery.of(context).size.width * 0.243,
-        height: MediaQuery.of(context).size.height * 0.101,
+        width: 120,
+        height: 120,
+        margin: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
+          border: Border.all(color: isSelected ? kprimaryColor : Colors.grey),
           borderRadius: BorderRadius.circular(10),
-          color: _isSelected ? kprimaryColor : kcontentColor,
+          color: isSelected ? kprimaryColor : kcontentColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              widget.icon,
+              icon,
               size: 40,
-              color: _isSelected ? kcontentColor : Colors.black87,
+              color: isSelected ? Colors.white : Colors.black,
             ),
+            const SizedBox(height: 10),
             Text(
-              widget.label,
+              label,
+              textAlign: TextAlign.center,
               style: TextStyle(
-                color: _isSelected ? Colors.white70 : Colors.black87,
+                color: isSelected ? Colors.white70 : Colors.black87,
               ),
             ),
           ],
@@ -245,7 +255,11 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
   }
 }
 
-class CardForm extends StatefulWidget {
+class CardForm extends StatelessWidget {
+  final TextEditingController cardNumberController;
+  final TextEditingController expMonthController;
+  final TextEditingController expYearController;
+  final TextEditingController cvvController;
   final ValueChanged<String> onCardNumberChanged;
   final ValueChanged<String> onExpMonthChanged;
   final ValueChanged<String> onExpYearChanged;
@@ -253,6 +267,10 @@ class CardForm extends StatefulWidget {
 
   const CardForm({
     super.key,
+    required this.cardNumberController,
+    required this.expMonthController,
+    required this.expYearController,
+    required this.cvvController,
     required this.onCardNumberChanged,
     required this.onExpMonthChanged,
     required this.onExpYearChanged,
@@ -260,21 +278,11 @@ class CardForm extends StatefulWidget {
   });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _CardFormState createState() => _CardFormState();
-}
-
-class _CardFormState extends State<CardForm> {
-  final _cardNumberController = TextEditingController();
-  final _expController = TextEditingController();
-  final _cvvController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         TextFormField(
-          controller: _cardNumberController,
+          controller: cardNumberController,
           decoration: const InputDecoration(labelText: 'Card Number'),
           validator: (value) {
             if (value!.isEmpty) {
@@ -282,31 +290,46 @@ class _CardFormState extends State<CardForm> {
             }
             return null;
           },
-          onChanged: (value) {
-            widget.onCardNumberChanged(value);
-          },
+          onChanged: onCardNumberChanged,
           keyboardType: TextInputType.number,
           maxLength: 16,
         ),
-        TextFormField(
-          controller: _expController,
-          decoration: const InputDecoration(labelText: 'Expiration Date'),
-          validator: (value) {
-            if (value!.isEmpty) {
-              return 'Please enter expiration date';
-            }
-            return null;
-          },
-          onChanged: (value) {
-            widget.onExpMonthChanged(value);
-          },
-          keyboardType: TextInputType.datetime,
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                controller: expMonthController,
+                decoration: const InputDecoration(labelText: 'Exp. Month'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter expiration month';
+                  }
+                  return null;
+                },
+                onChanged: onExpMonthChanged,
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: TextFormField(
+                controller: expYearController,
+                decoration: const InputDecoration(labelText: 'Exp. Year'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter expiration year';
+                  }
+                  return null;
+                },
+                onChanged: onExpYearChanged,
+                keyboardType: TextInputType.number,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(
-          height: 24,
-        ),
+        const SizedBox(height: 24),
         TextFormField(
-          controller: _cvvController,
+          controller: cvvController,
           decoration: const InputDecoration(labelText: 'CVV'),
           validator: (value) {
             if (value!.isEmpty) {
@@ -314,9 +337,7 @@ class _CardFormState extends State<CardForm> {
             }
             return null;
           },
-          onChanged: (value) {
-            widget.onCvcChanged(value);
-          },
+          onChanged: onCvcChanged,
           keyboardType: TextInputType.number,
           maxLength: 3,
         ),

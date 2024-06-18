@@ -85,32 +85,65 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Positioned(
-              child: Align(
-            alignment: Alignment.topRight,
-            child: Container(
-              height: MediaQuery.of(context).size.height * 0.045,
-              width: MediaQuery.of(context).size.width * 0.097,
-              decoration: const BoxDecoration(
-                color: kprimaryColor,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20),
-                  bottomLeft: Radius.circular(10),
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.045,
+                width: MediaQuery.of(context).size.width * 0.097,
+                decoration: const BoxDecoration(
+                  color: kprimaryColor,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    bottomLeft: Radius.circular(10),
+                  ),
                 ),
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  provider.toggleFavorite(product);
-                },
-                child: Icon(
-                  provider.isExist(product)
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                  color: Colors.white,
-                  size: 22,
+                child: GestureDetector(
+                  onTap: () {
+                    if (provider.isExist(product)) {
+                      provider.toggleFavorite(product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Item removed from favorites',
+                            style: TextStyle(
+                              color: kcontentColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          backgroundColor: Color.fromRGBO(51, 91, 108, 1),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    } else {
+                      provider.toggleFavorite(product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Item added to favorites',
+                            style: TextStyle(
+                              color: kcontentColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          ),
+                          backgroundColor: Color.fromRGBO(51, 91, 108, 1),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    }
+                  },
+                  child: Icon(
+                    provider.isExist(product)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.white,
+                    size: 22,
+                  ),
                 ),
               ),
             ),
-          ))
+          ),
         ],
       ),
     );

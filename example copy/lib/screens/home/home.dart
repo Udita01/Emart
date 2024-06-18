@@ -4,8 +4,8 @@ import 'package:example/models/product_model.dart';
 import 'package:example/screens/contact/contact.dart';
 import 'package:example/screens/home/widgets/image_slider.dart';
 import 'package:example/screens/home/widgets/prod_cart.dart';
-import 'package:example/screens/home/widgets/search_bar.dart';
-import 'package:example/screens/profile/profile.dart';
+import 'package:example/screens/nav_bar.dart';
+import 'package:example/screens/profile/user_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/category.dart';
@@ -34,26 +34,55 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kcontentColor,
-        title: Image.asset(
-          'images/logooo (1).png',
-          width: MediaQuery.of(context).size.width * .75,
-          height: MediaQuery.of(context).size.height * .12,
+        title: Row(
+          children: [
+            Image.asset(
+              'images/logooo (3).png',
+              width: MediaQuery.of(context).size.width * .35,
+              height: MediaQuery.of(context).size.height * .2,
+            ),
+            Image.asset(
+              'images/logooo (1).png',
+              width: MediaQuery.of(context).size.width * .3,
+              height: MediaQuery.of(context).size.height * .06,
+            ),
+          ],
         ),
       ),
       drawer: Drawer(
+        backgroundColor: Colors.white,
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.pink[400],
+              decoration: const BoxDecoration(
+                color: kcontentColor,
               ),
-              child: const Text(
-                'Shop Ease',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
+              child: Center(
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.transparent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Image.asset(
+                          'images/logooo (1).png',
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 15,
+                    ),
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                        'images/logooo (3).png',
+                        width: 120,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -69,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
+                    builder: (context) => const BottomNavBar(),
                   ),
                 );
               },
@@ -103,13 +132,13 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const Profile(),
+                    builder: (context) => const About(),
                   ),
                 );
               },
             ),
             const SizedBox(
-              height: 300,
+              height: 330,
             ),
             ListTile(
               leading: const Icon(
@@ -136,13 +165,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const SizedBox(height: 35),
-              // for custom appbar
-              // const CustomAppBar(),
+              // const MySearchBAR(),
               // const SizedBox(height: 20),
-              // for search bar
-              const MySearchBAR(),
-              const SizedBox(height: 20),
               ImageSlider(
                 currentSlide: currentSlider,
                 onChange: (value) {
@@ -167,14 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                    Text(
-                      "See all",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                        color: Colors.black54,
                       ),
                     ),
                   ],

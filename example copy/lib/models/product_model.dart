@@ -10,19 +10,24 @@ class Product {
   final List<Color> colors;
   final String category;
   final double rate;
+  final String specifications;
+  final String reviews;
   int quantity;
 
-  Product(
-      {required this.title,
-      required this.review,
-      required this.description,
-      required this.image,
-      required this.price,
-      required this.colors,
-      required this.seller,
-      required this.category,
-      required this.rate,
-      required this.quantity});
+  Product({
+    required this.title,
+    required this.review,
+    required this.description,
+    required this.image,
+    required this.price,
+    required this.colors,
+    required this.seller,
+    required this.category,
+    required this.rate,
+    required this.quantity,
+    required this.specifications,
+    required this.reviews,
+  });
 }
 
 final List<Product> all = [
@@ -46,6 +51,10 @@ final List<Product> all = [
     review: "(320 Reviews)",
     rate: 4.8,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "iPhone",
@@ -67,6 +76,10 @@ final List<Product> all = [
     review: "(32 Reviews)",
     rate: 4.5,
     quantity: 1,
+    specifications:
+        "Display:\nSuper Retina XDR display\n15.4 cm / 6.1″ OLED display\n2532x1170-pixel resolution at 460 ppi\nHDR display with True Tone\nWide color (P3) support\nHaptic Touch\nFingerprint-resistant oleophobic coating",
+    reviews:
+        "Camera Excellence: The iPhone 15 Pro Max excels in camera performance. Its sophisticated camera system captures stunning photos and videos, and the titanium build adds a touch of luxury.",
   ),
   Product(
     title: "Smart Watch",
@@ -88,6 +101,10 @@ final List<Product> all = [
     review: "(20 Reviews)",
     rate: 4.0,
     quantity: 1,
+    specifications:
+        "Best Fitbit Smartwatch\nOS: Fitbit OS\nPhone Compatibility: Android, iOS\nBattery Life: Up to 6 days\nWater Rating: 5ATM\nConnectivity: Wi-Fi, Bluetooth\nDisplay: AMOLED\nWeight: Lightweight",
+    reviews:
+        "Best Android Smartwatch: The Galaxy Watch 6 boasts a vibrant AMOLED display, excellent fitness tracking, and a rotating bezel for easy navigation. It’s compatible with both Android and iOS devices",
   ),
   Product(
     title: "Flash Drive",
@@ -109,6 +126,10 @@ final List<Product> all = [
     review: "(20 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Display:\nSuper Retina XDR display\n15.4 cm / 6.1″ OLED display\n2532x1170-pixel resolution at 460 ppi\nHDR display with True Tone\nWide color (P3) support\nHaptic Touch\nFingerprint-resistant oleophobic coating",
+    reviews:
+        "Camera Excellence: The iPhone 15 Pro Max excels in camera performance. Its sophisticated camera system captures stunning photos and videos, and the titanium build adds a touch of luxury.",
   ),
   Product(
     title: "Watch",
@@ -130,6 +151,10 @@ final List<Product> all = [
     review: "(100 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Air Jordan",
@@ -151,6 +176,10 @@ final List<Product> all = [
     review: "(55 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Best Fitbit Smartwatch\nOS: Fitbit OS\nPhone Compatibility: Android, iOS\nBattery Life: Up to 6 days\nWater Rating: 5ATM\nConnectivity: Wi-Fi, Bluetooth\nDisplay: AMOLED\nWeight: Lightweight",
+    reviews:
+        "Best Android Smartwatch: The Galaxy Watch 6 boasts a vibrant AMOLED display, excellent fitness tracking, and a rotating bezel for easy navigation. It’s compatible with both Android and iOS devices",
   ),
   Product(
     title: "Laptop",
@@ -172,6 +201,10 @@ final List<Product> all = [
     review: "(99 Reviews)",
     rate: 4.7,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Wedding Ring",
@@ -182,7 +215,7 @@ final List<Product> all = [
       "images/jewelery/wedding ring g.png",
       "images/jewelery/wedding ring rg.png"
     ],
-    price: 2500000,
+    price: 250000,
     seller: "I Am Seller",
     colors: [
       Colors.grey,
@@ -193,6 +226,10 @@ final List<Product> all = [
     review: "(80 Reviews)",
     rate: 4.5,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "  Pants",
@@ -214,6 +251,10 @@ final List<Product> all = [
     review: "(55 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];
 
@@ -238,6 +279,10 @@ final List<Product> shoes = [
     review: "(55 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Vans Old Skool",
@@ -259,6 +304,10 @@ final List<Product> shoes = [
     review: "(200 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Pumps",
@@ -280,6 +329,10 @@ final List<Product> shoes = [
     review: "(100 Reviews)",
     rate: 4.8,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Sports Shoes",
@@ -301,6 +354,10 @@ final List<Product> shoes = [
     review: "(60 Reviews)",
     rate: 3.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "High-knee Boots",
@@ -322,6 +379,10 @@ final List<Product> shoes = [
     review: "(00 Reviews)",
     rate: 0.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];
 
@@ -346,6 +407,10 @@ final List<Product> electronics = [
     review: "(200 Reviews)",
     rate: 4.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Lenovo Laptop",
@@ -367,6 +432,10 @@ final List<Product> electronics = [
     review: "(99 Reviews)",
     rate: 4.7,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Asus Laptop",
@@ -388,6 +457,10 @@ final List<Product> electronics = [
     review: "(20 Reviews)",
     rate: 4.2,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];
 
@@ -412,6 +485,10 @@ final List<Product> womenFashion = [
     review: "(25 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Dress",
@@ -433,9 +510,13 @@ final List<Product> womenFashion = [
     review: "(100 Reviews)",
     rate: 4.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
-    title: "T-Shert",
+    title: "T-Shirt",
     description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Donec massa sapien faucibus et molestie ac feugiat. In massa tempor nec feugiat nisl. Libero id faucibus nisl tincidunt.",
     image: [
@@ -454,6 +535,10 @@ final List<Product> womenFashion = [
     review: "(20 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "  Pants",
@@ -475,6 +560,10 @@ final List<Product> womenFashion = [
     review: "(55 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];
 final List<Product> jewelery = [
@@ -498,6 +587,10 @@ final List<Product> jewelery = [
     review: "(320 Reviews)",
     rate: 4.5,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Jewelery-Box",
@@ -519,6 +612,10 @@ final List<Product> jewelery = [
     review: "(100 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Wedding Ring",
@@ -540,6 +637,10 @@ final List<Product> jewelery = [
     review: "(80 Reviews)",
     rate: 4.5,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Necklace-Jewellery",
@@ -561,6 +662,10 @@ final List<Product> jewelery = [
     review: "(22 Reviews)",
     rate: 3.5,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];
 final List<Product> menFashion = [
@@ -584,6 +689,10 @@ final List<Product> menFashion = [
     review: "(90 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Men Pants",
@@ -605,6 +714,10 @@ final List<Product> menFashion = [
     review: "(500 Reviews)",
     rate: 4.5,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "Men Shirt",
@@ -626,6 +739,10 @@ final List<Product> menFashion = [
     review: "(200 Reviews)",
     rate: 3.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
   Product(
     title: "T-Shirt",
@@ -646,6 +763,10 @@ final List<Product> menFashion = [
     category: "MenFashion",
     review: "(1k Reviews)",
     rate: 5.0,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
     quantity: 1,
   ),
   Product(
@@ -668,5 +789,9 @@ final List<Product> menFashion = [
     review: "(100 Reviews)",
     rate: 5.0,
     quantity: 1,
+    specifications:
+        "Height: 40.5 mm (1.59″),\nWidth: 16.5 mm (0.65″),\nDepth: 18.0 mm (0.71″),\nWeight: 4 grams (0.14 ounces)",
+    reviews:
+        "Top ANC Recommendation: For the ultimate noise-canceling experience, these earbuds deliver total silence",
   ),
 ];

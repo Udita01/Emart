@@ -21,9 +21,8 @@ class _AddToCartState extends State<AddToCart> {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Container(
         height: 85,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50),
-          color: Colors.transparent,
+        decoration: const BoxDecoration(
+          color: Colors.white,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 15),
         alignment: Alignment.center,
@@ -80,12 +79,12 @@ class _AddToCartState extends State<AddToCart> {
               onTap: () {
                 provider.toggleFavorite(widget.product);
                 const snackBar = SnackBar(
-                  backgroundColor: Color.fromRGBO(163, 109, 123, 1),
+                  backgroundColor: Color.fromRGBO(51, 91, 108, 1),
                   content: Text(
                     "Successfully added!",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 18,
                       color: Colors.white,
                     ),
                   ),

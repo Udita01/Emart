@@ -62,7 +62,7 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat Bot'),
+        title: const Text('Help Center'),
         backgroundColor: const Color(0xffF5F5F5),
       ),
       body: Padding(
@@ -91,7 +91,9 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
                       child: Text(
                         message,
                         style: const TextStyle(
-                          color: Colors.white70,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1,
                         ),
                       ),
                     ),

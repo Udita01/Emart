@@ -65,8 +65,17 @@ class _CartScreenState extends State<CartScreen> {
         ),
         backgroundColor: kcontentColor,
       ),
-      backgroundColor: kcontentColor,
-      bottomSheet: finalList.isNotEmpty ? const CheckOutBox() : null,
+      backgroundColor: Colors.white,
+      bottomSheet: finalList.isNotEmpty
+          ? const CheckOutBox()
+          : const Center(
+              child: Text(
+                'No items added to cart yet!',
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
 
       body: SafeArea(
         child: Column(

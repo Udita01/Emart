@@ -1,6 +1,5 @@
 import 'package:example/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
@@ -9,7 +8,7 @@ class ContactPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kprimaryColor,
+        backgroundColor: kcontentColor,
         title: const Text(
           'Contact Us',
           style: TextStyle(
@@ -34,11 +33,11 @@ class ContactPage extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Email: contact@example.com',
+              'Email: shopease@gds.ey.com',
               style: TextStyle(fontSize: 22),
             ),
             const Text(
-              'Phone: +1234567890',
+              'Phone: +91 1234567890',
               style: TextStyle(fontSize: 22),
             ),
             const SizedBox(height: 100),

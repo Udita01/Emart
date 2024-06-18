@@ -57,146 +57,156 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(
-              "images/logooo (1).png",
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.25,
+            Row(
+              children: [
+                const SizedBox(
+                  width: 40,
+                ),
+                Image.asset(
+                  'images/logooo (3).png',
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  height: MediaQuery.of(context).size.height * .18,
+                ),
+                Image.asset(
+                  "images/logooo (1).png",
+                  width: MediaQuery.of(context).size.width * 0.45,
+                  height: MediaQuery.of(context).size.height * 0.10,
+                ),
+              ],
             ),
             Center(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  //We put all our textfield to a form to be controlled and not allow as empty
-                  child: Form(
-                    key: formKey,
-                    child: Column(
-                      children: [
-                        //Username field
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                //We put all our textfield to a form to be controlled and not allow as empty
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    children: [
+                      //Username field
 
-                        //Before we show the image, after we copied the image we need to define the location in pubspec.yaml
+                      //Before we show the image, after we copied the image we need to define the location in pubspec.yaml
 
-                        Image.asset(
-                          "images/shop1.jpg",
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.26,
+                      Image.asset(
+                        "images/shop1.jpg",
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * 0.26,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: kprimaryColor.withOpacity(.2),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: kprimaryColor.withOpacity(.2),
+                        child: TextFormField(
+                          controller: username,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "username is required";
+                            }
+                            return null;
+                          },
+                          decoration: const InputDecoration(
+                            icon: Icon(Icons.person),
+                            border: InputBorder.none,
+                            hintText: "Username",
                           ),
-                          child: TextFormField(
-                            controller: username,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "username is required";
-                              }
-                              return null;
-                            },
-                            decoration: const InputDecoration(
-                              icon: Icon(Icons.person),
+                        ),
+                      ),
+
+                      //Password field
+                      Container(
+                        margin: const EdgeInsets.all(8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: kprimaryColor.withOpacity(.2)),
+                        child: TextFormField(
+                          controller: password,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "password is required";
+                            }
+                            return null;
+                          },
+                          obscureText: !isVisible,
+                          decoration: InputDecoration(
+                              icon: const Icon(Icons.lock),
                               border: InputBorder.none,
-                              hintText: "Username",
-                            ),
-                          ),
+                              hintText: "Password",
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    //In here we will create a click to show and hide the password a toggle button
+                                    setState(() {
+                                      //toggle button
+                                      isVisible = !isVisible;
+                                    });
+                                  },
+                                  icon: Icon(isVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off))),
                         ),
+                      ),
 
-                        //Password field
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              color: kprimaryColor.withOpacity(.2)),
-                          child: TextFormField(
-                            controller: password,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "password is required";
+                      const SizedBox(height: 10),
+                      //Login button
+                      Container(
+                        height: 55,
+                        width: MediaQuery.of(context).size.width * .9,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: kprimaryColor,
+                        ),
+                        child: TextButton(
+                            onPressed: () {
+                              if (formKey.currentState!.validate()) {
+                                //Login method will be here
+                                login();
+
+                                //Now we have a response from our sqlite method
+                                //We are going to create a user
                               }
-                              return null;
                             },
-                            obscureText: !isVisible,
-                            decoration: InputDecoration(
-                                icon: const Icon(Icons.lock),
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                suffixIcon: IconButton(
-                                    onPressed: () {
-                                      //In here we will create a click to show and hide the password a toggle button
-                                      setState(() {
-                                        //toggle button
-                                        isVisible = !isVisible;
-                                      });
-                                    },
-                                    icon: Icon(isVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off))),
-                          ),
-                        ),
+                            child: const Text(
+                              "LOGIN",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
 
-                        const SizedBox(height: 10),
-                        //Login button
-                        Container(
-                          height: 55,
-                          width: MediaQuery.of(context).size.width * .9,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: kprimaryColor,
-                          ),
-                          child: TextButton(
+                      //Sign up button
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Don't have an account?"),
+                          TextButton(
                               onPressed: () {
-                                if (formKey.currentState!.validate()) {
-                                  //Login method will be here
-                                  login();
-
-                                  //Now we have a response from our sqlite method
-                                  //We are going to create a user
-                                }
+                                //Navigate to sign up
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const SignUp(),
+                                  ),
+                                );
                               },
-                              child: const Text(
-                                "LOGIN",
-                                style: TextStyle(color: Colors.white),
-                              )),
-                        ),
+                              child: const Text("SIGN UP"))
+                        ],
+                      ),
 
-                        //Sign up button
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text("Don't have an account?"),
-                            TextButton(
-                                onPressed: () {
-                                  //Navigate to sign up
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const SignUp(),
-                                    ),
-                                  );
-                                },
-                                child: const Text("SIGN UP"))
-                          ],
-                        ),
-
-                        // We will disable this message in default, when user and pass is incorrect we will trigger this message to user
-                        isLoginTrue
-                            ? const Text(
-                                "Username or passowrd is incorrect",
-                                style: TextStyle(
-                                  color: Color.fromRGBO(183, 28, 28, 1),
-                                ),
-                              )
-                            : const SizedBox(),
-                      ],
-                    ),
+                      // We will disable this message in default, when user and pass is incorrect we will trigger this message to user
+                      isLoginTrue
+                          ? const Text(
+                              "Username or passowrd is incorrect",
+                              style: TextStyle(
+                                color: Color.fromRGBO(183, 28, 28, 1),
+                              ),
+                            )
+                          : const SizedBox(),
+                    ],
                   ),
                 ),
               ),
