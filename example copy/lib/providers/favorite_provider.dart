@@ -20,6 +20,11 @@ class FavoriteProvider extends ChangeNotifier {
     return isExist;
   }
 
+  clearFav() {
+    favorites.clear();
+    notifyListeners();
+  }
+
   static FavoriteProvider of(
     BuildContext context, {
     bool listen = true,

@@ -1,7 +1,7 @@
 import 'package:example/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:example/constants.dart';
-import 'package:flutter/widgets.dart';
+import 'package:example/providers/cart_provider.dart';
 
 enum PaymentMethod {
   creditDebit,
@@ -30,6 +30,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = CartProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -131,6 +132,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 onPressed: _isFormValid && _selectedPaymentMethod != null
                     ? () {
                         _showSnackBar(context);
+                        provider.clearCart();
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => const BottomNavBar(),

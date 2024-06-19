@@ -28,6 +28,11 @@ class CartProvider extends ChangeNotifier {
     _cart[index].quantity--;
     notifyListeners();
   }
+  
+  clearCart() {
+    _cart.clear();
+    notifyListeners();
+  }
 
   totalPrice() {
     double total1 = 0.0;
