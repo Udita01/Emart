@@ -154,7 +154,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-            // Add more ListTile widgets for additional options
           ],
         ),
       ),
@@ -165,8 +164,6 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const MySearchBAR(),
-              // const SizedBox(height: 20),
               ImageSlider(
                 currentSlide: currentSlider,
                 onChange: (value) {
