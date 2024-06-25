@@ -16,6 +16,7 @@ class MyImageSlider extends StatelessWidget {
       height: 250,
       child: PageView.builder(
         onPageChanged: onChange,
+        itemCount: 5,
         itemBuilder: (context, index) {
           return Hero(
             tag: image,
