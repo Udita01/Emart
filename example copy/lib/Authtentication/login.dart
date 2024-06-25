@@ -4,7 +4,6 @@ import 'package:example/SQLite/sqlite.dart';
 import 'package:example/constants.dart';
 import 'package:example/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -64,12 +63,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Image.asset(
                   'images/logooo (3).png',
-                  width: MediaQuery.of(context).size.width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.42,
                   height: MediaQuery.of(context).size.height * .18,
                 ),
                 Image.asset(
                   "images/logooo (1).png",
-                  width: MediaQuery.of(context).size.width * 0.45,
+                  width: MediaQuery.of(context).size.width * 0.42,
                   height: MediaQuery.of(context).size.height * 0.10,
                 ),
               ],

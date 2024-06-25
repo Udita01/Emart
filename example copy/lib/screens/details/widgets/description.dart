@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:example/constants.dart';
+import 'package:flutter/widgets.dart';
 
 class Description extends StatefulWidget {
   final String description;
@@ -25,82 +26,88 @@ class _DescriptionState extends State<Description> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedTabIndex = 0;
-                });
-              },
-              child: Container(
-                width: 120,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: selectedTabIndex == 0 ? kprimaryColor : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  "Description",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: selectedTabIndex == 0 ? Colors.white : Colors.black,
-                    fontSize: 16,
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedTabIndex = 0;
+                  });
+                },
+                child: Container(
+                  width: 120,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: selectedTabIndex == 0 ? kprimaryColor : Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Description",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          selectedTabIndex == 0 ? Colors.white : Colors.black,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedTabIndex = 1;
-                });
-              },
-              child: Container(
-                width: 120,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: selectedTabIndex == 1 ? kprimaryColor : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  "Specifications",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: selectedTabIndex == 1 ? Colors.white : Colors.black,
-                    fontSize: 16,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedTabIndex = 1;
+                  });
+                },
+                child: Container(
+                  width: 120,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: selectedTabIndex == 1 ? kprimaryColor : Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Specifications",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          selectedTabIndex == 1 ? Colors.white : Colors.black,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedTabIndex = 2;
-                });
-              },
-              child: Container(
-                width: 120,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: selectedTabIndex == 2 ? kprimaryColor : Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  "Reviews",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: selectedTabIndex == 2 ? Colors.white : Colors.black,
-                    fontSize: 16,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedTabIndex = 2;
+                  });
+                },
+                child: Container(
+                  width: 120,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: selectedTabIndex == 2 ? kprimaryColor : Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Reviews",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          selectedTabIndex == 2 ? Colors.white : Colors.black,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 20),
         // Display content based on selected tab

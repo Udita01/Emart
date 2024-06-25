@@ -53,7 +53,7 @@ class Laptop extends StatelessWidget {
                 ),
                 // Product title
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 13.0),
                   child: Text(
                     label1, // Replace with actual laptop name
                     style: const TextStyle(
@@ -93,7 +93,7 @@ class Laptop extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Image.asset(
                     imageUrl3,
-                    width: MediaQuery.of(context).size.width * 0.5,
+                    width: MediaQuery.of(context).size.width * 0.45,
                     height: MediaQuery.of(context).size.height * 0.3,
                   ),
                 ),
