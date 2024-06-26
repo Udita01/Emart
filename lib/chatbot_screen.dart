@@ -29,8 +29,8 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
   }
 
   void _connectToServer() {
-    socket = IO.io('http://192.168.0.165:5999', <String, dynamic>{
-      // socket = IO.io('http://10.0.2.2:5999', <String, dynamic>{
+    // socket = IO.io('http://192.168.0.165:5999', <String, dynamic>{
+    socket = IO.io('http://10.0.2.2:5999', <String, dynamic>{
       // socket = IO.io('http://localhost:5999', <String, dynamic>{
       'transports': ['websocket'],
       'autoConnect': false,
