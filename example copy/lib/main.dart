@@ -20,7 +20,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  Future<void> initializeFirebase() async {}
+  // Future<void> initializeFirebase() async {}
   @override
   Widget build(BuildContext context) => MultiProvider(
         providers: [
